@@ -6,13 +6,14 @@ import (
 	"math/rand"
 	"net/http"
 	"strconv"
+
 	"github.com/gorilla/mux"
 )
 
 // News struct (Model)
 type News struct {
 	ID     string  `json:"id"`
-	Isbn   string  `json:"isbn"`
+	Source string  `json:"src"`
 	Title  string  `json:"title"`
 	Author *Author `json:"author"`
 }
@@ -92,8 +93,8 @@ func main() {
 	r := mux.NewRouter()
 
 	// Hardcoded data - @todo: add database
-	MNews = append(MNews, News{ID: "1", Isbn: "438227", Title: "News One", Author: &Author{Firstname: "John", Lastname: "Doe"}})
-	MNews = append(MNews, News{ID: "2", Isbn: "454555", Title: "News Two", Author: &Author{Firstname: "Steve", Lastname: "Smith"}})
+	MNews = append(MNews, News{ID: "1", Source: "Tribun", Title: "News One", Author: &Author{Firstname: "John", Lastname: "Doe"}})
+	MNews = append(MNews, News{ID: "2", Source: "New York Times", Title: "News Two", Author: &Author{Firstname: "Steve", Lastname: "Smith"}})
 
 	// Route handles & endpoints
 	r.HandleFunc("/MNews", getMNews).Methods("GET")
@@ -105,10 +106,3 @@ func main() {
 	// Start server
 	log.Fatal(http.ListenAndServe(":8000", r))
 }
-
-// Request sample
-// {
-// 	"isbn":"4545454",
-// 	"title":"News Three",
-// 	"author":{"firstname":"Harry","lastname":"White"}
-// }
