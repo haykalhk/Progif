@@ -13,7 +13,6 @@ import (
 var (
 	googleOauthConfig *oauth2.Config
 	// TODO: randomize it
-	// test pull
 	oauthStateString = "pseudo-random"
 )
 
