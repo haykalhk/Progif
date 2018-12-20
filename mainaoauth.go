@@ -5,6 +5,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"os"
+
 	"golang.org/x/oauth2"
 	"golang.org/x/oauth2/google"
 )
@@ -12,10 +13,9 @@ import (
 var (
 	googleOauthConfig *oauth2.Config
 	// TODO: randomize it
+	// test pull
 	oauthStateString = "pseudo-random"
 )
-
-
 
 func init() {
 	googleOauthConfig = &oauth2.Config{
